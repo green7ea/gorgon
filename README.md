@@ -12,8 +12,9 @@ addon. To do this, place the gorgon folder inside your blender addons
 folder. This folder can be found by going into the blender python
 console (open blender and press <shift> + <f4>):
 
->>> import sys
->>> print(sys.path[-1])
+  `import sys`
+  
+  `print(sys.path[-1])`
 
 My addon folder is '~/.config/blender/2.70/addons/modules'
 
