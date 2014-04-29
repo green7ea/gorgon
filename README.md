@@ -4,6 +4,21 @@ gorgon
 A blender script that exports to a capnproto serialized file.
 
 
+Prerequisites
+-------------
+
+- [Cap'n Proto](http://kentonv.github.io/capnproto/)
+
+  The C++ Cap'n Proto library must be installed on your system. This
+  is necessary for importing models into C++ and exporting them from
+  Blender.
+
+- [pycapnp](http://jparyani.github.io/pycapnp/)
+
+  The pycapnp python library must be installed and accessible from
+  Blender. This is only necessary for exporting models.
+
+
 Exporting a Model from Blender
 ------------------------------
 
