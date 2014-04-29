@@ -1,7 +1,7 @@
 gorgon
 ======
 
-A blender script that exports to a capnproto serialized file.
+A blender script that exports to a Cap'n Proto serialized file.
 
 
 Prerequisites
