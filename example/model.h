@@ -29,11 +29,11 @@ public:
 
         name = mesh.getName().cStr();
 
-        for (Face::Reader face: mesh.getFaces())
+        for (const Face::Reader &face: mesh.getFaces())
         {
             std::vector<VertexData> vertex_data;
 
-            for (Vertex::Reader vertex: face.getVertices())
+            for (const Vertex::Reader &vertex: face.getVertices())
             {
                 Vector::Reader position = vertex.getPosition();
                 Vector::Reader normal = vertex.getNormal();
@@ -56,7 +56,7 @@ public:
 
     void draw()
     {
-        for (auto face: faces)
+        for (const auto &face: faces)
         {
             if (face.size() == 4)
             {
@@ -67,7 +67,7 @@ public:
                 glBegin(GL_TRIANGLES);
             }
 
-            for (auto vertex: face)
+            for (const auto &vertex: face)
             {
                 glNormal3fv(vertex.normal);
                 glVertex3fv(vertex.pos);
