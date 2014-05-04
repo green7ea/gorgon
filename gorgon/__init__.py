@@ -4,7 +4,7 @@ bl_info = {
     'name': 'Gorgon Export',
     'author': 'green7ea',
     'version': (0, 1, 1),
-    'blender': (2, 6, 3),
+    'blender': (2, 7, 0),
     'location': 'File > Import-Export',
     'description': 'Export a model into the gorgon format.',
     'warning': '',
@@ -16,36 +16,6 @@ import bpy
 import gorgon.mesh
 from bpy.props import StringProperty, BoolProperty
 from bpy_extras.io_utils import ExportHelper, ImportHelper
-
-
-def test(filepath):
-    if len(bpy.context.selected_objects) != 1:
-        raise NameError('Please select exactly one object.')
-
-    scene = bpy.context.scene
-    object = bpy.context.selected_objects[0]
-    mesh = None
-    mesh_tmp = False
-
-    if object.name.startswith('~'):
-        raise NameError('Object starts with ~.')
-
-    if object.type != 'MESH':
-        try:
-            mesh = object.to_mesh(scene, True, 'PREVIEW')
-            mesh_tmp = True
-        except:
-            mesh = None
-    else:
-        mesh = object.data
-        if not mesh.tessfaces and mesh.polygons:
-            mesh.calc_tessface()
-
-    mesh_obj = gorgon.mesh.Mesh(mesh, object.matrix_world.copy())
-    mesh_obj.to_file(filepath)
-
-    if mesh_tmp:
-        bpy.data.meshes.remove(mesh)
 
 
 class export_gorgon(bpy.types.Operator, ExportHelper):
@@ -79,8 +49,6 @@ class export_gorgon(bpy.types.Operator, ExportHelper):
                 mesh = None
         else:
             mesh = object.data
-            if not mesh.tessfaces and mesh.polygons:
-                mesh.calc_tessface()
 
         mesh_obj = gorgon.mesh.Mesh(mesh, object.matrix_world.copy())
         mesh_obj.to_file(self.filepath)

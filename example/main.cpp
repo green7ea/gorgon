@@ -9,6 +9,16 @@
 
 #include "model.h"
 
+void init()
+{
+    glEnable(GL_TEXTURE_2D);
+    glShadeModel(GL_SMOOTH);
+    glClearColor(0.f, 0.f, 0.f, 1.f);
+    glClearDepth(1.f);
+    glEnable(GL_DEPTH_TEST);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+}
+
 bool handle_events()
 {
     SDL_Event event;
@@ -45,7 +55,7 @@ void draw(Model &model)
     glLoadIdentity();
     glScalef(0.3f, 0.3f, 0.3f);
 
-    glColor3f(0.5f, 0.f, 0.f);
+    glColor3f(0.5f, 0.5f, 0.5f);
 
     model.draw();
 }
@@ -83,6 +93,8 @@ int main(int argc, char **argv)
     {
         return 4;
     }
+
+    init();
 
     int fd = open(filename.c_str(), O_RDONLY);
     if (fd < 0)
